@@ -91,7 +91,8 @@ else:
         for line1 in output_border_crossing_list:
             if(line.Border==line1.Border and line.Measure==line1.Measure and line.Date>line1.Date and line.Date.month>1):
                 line.Sum += line1.Value
-                line.Average = round(line.Sum/(line.Date.month-1))
+                line.Average = Decimal(line.Sum/(line.Date.month-1)).to_integral(rounding=ROUND_HALF_UP)  #Use round_half_up to match the python 2 results              
+                #line.Average = round(line.Sum/(line.Date.month-1))
 
     f=open(sys.argv[2],"w+")                                                    #print the output
     f.write('Border,Date,Measure,Value,Average\n')
