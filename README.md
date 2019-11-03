@@ -44,8 +44,7 @@ The input data must have at least the following fields provided.
 * `Measure`: Indicates means, or type, of crossing being measured (e.g., vehicle, equipment, passenger or pedestrian)
 * `Value`: Number of crossings
 
-The columns needs to be separated by comma.
-The first line must be the header line. 
+Notes: The columns need to be separated by comma  and the first line must be the header line. 
 
 
 ## Expected Output
@@ -73,6 +72,8 @@ The lines should be sorted in descending order by
 * `Border`
 
 The column, `Average`, is for the running monthly average of total crossings for that border and means of crossing in all previous months. In this example, to calculate the `Average` for the first line (i.e., running monthly average of total pedestrians crossing the US-Mexico Border in all of the months preceding March), it takes the average sum of total number of US-Mexico pedestrian crossings in February `156,891 + 15,272 = 172,163` and January `56,810`, and round it to the nearest whole number `round(228,973/2) = 114,487`
+
+`Note: For values like x.5, Python 3 rounds towards the the even integer while Python 2 rounds to the top`
 
 ## Repo directory structure
 
