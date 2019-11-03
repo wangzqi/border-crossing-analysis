@@ -94,6 +94,7 @@ else:
                 line.Average = round(line.Sum/(line.Date.month-1))
 
     f=open(sys.argv[2],"w+")                                                    #print the output
+    f.write('Border,Date,Measure,Value,Average\n')
     for line in output_border_crossing_list:
         f.write(line.Border+","+line.Date.strftime('%m/%d/%Y %I:%M:%S %p')+','+line.Measure+","+str(line.Value)+','+str(line.Average)+'\n')  
     f.close()
