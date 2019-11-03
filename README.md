@@ -43,19 +43,17 @@ The input data must have at least the following fields provided.
 * `Date`: Timestamp indicating month and year of crossing
 * `Measure`: Indicates means, or type, of crossing being measured (e.g., vehicle, equipment, passenger or pedestrian)
 * `Value`: Number of crossings
+
 The columns needs to be separated by comma.
 The first line must be the header line. 
 
 
-
 ## Expected Output
-Using the input file, you must write a program to 
+The output file will output
 * Sum the total number of crossings (`Value`) of each type of vehicle or equipment, or passengers or pedestrians, that crossed the border that month, regardless of what port was used. 
 * Calculate the running monthly average of total crossings, rounded to the nearest whole number, for that combination of `Border` and `Measure`, or means of crossing.
 
-Your program must write the requested output data to a file named `report.csv` in the top-most `output` directory of your repository.
-
-For example, given the above input file, the correct output file, `report.csv` would be:
+For example, given the above input file, the output file, `report.csv` would be:
 
 ```
 Border,Date,Measure,Value,Average
@@ -74,7 +72,7 @@ The lines should be sorted in descending order by
 * `Measure`
 * `Border`
 
-The column, `Average`, is for the running monthly average of total crossings for that border and means of crossing in all previous months. In this example, to calculate the `Average` for the first line (i.e., running monthly average of total pedestrians crossing the US-Mexico Border in all of the months preceding March), you'd take the average sum of total number of US-Mexico pedestrian crossings in February `156,891 + 15,272 = 172,163` and January `56,810`, and round it to the nearest whole number `round(228,973/2) = 114,487`
+The column, `Average`, is for the running monthly average of total crossings for that border and means of crossing in all previous months. In this example, to calculate the `Average` for the first line (i.e., running monthly average of total pedestrians crossing the US-Mexico Border in all of the months preceding March), it takes the average sum of total number of US-Mexico pedestrian crossings in February `156,891 + 15,272 = 172,163` and January `56,810`, and round it to the nearest whole number `round(228,973/2) = 114,487`
 
 ## Repo directory structure
 
