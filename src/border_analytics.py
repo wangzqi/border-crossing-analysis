@@ -65,7 +65,7 @@ def sortKey(line):
     return line.Date,line.Border,line.Measure
 
 
-# Main part start here
+# Main part starts here
 with open(sys.argv[1],'r') as Border_Crossing_Entry_Input:                      # Read in all the records
     for line in Border_Crossing_Entry_Input:
         input_record=line.split(',')
