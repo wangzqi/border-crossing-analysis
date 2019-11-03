@@ -68,7 +68,8 @@ def sortKey(line):
 # Main part starts here
 with open(sys.argv[1],'r') as Border_Crossing_Entry_Input:                      # Read in all the records
     for line in Border_Crossing_Entry_Input:
-        input_record=line.split(',')
+        input_record=line.strip()
+        input_record=input_record.split(',')
         if input_record.count('Border')!=0:                                     # If it is a header line
             header = input_record
         else:                                                                   # If it is a record
