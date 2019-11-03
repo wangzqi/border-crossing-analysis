@@ -17,6 +17,7 @@ Norton,Vermont,211,US-Canada Border,03/01/2019 12:00:00 AM,Trains,19,POINT (-71.
 
 import sys
 from datetime import datetime
+from decimal import *
 
 year=0
 output_border_crossing_list = []
