@@ -92,15 +92,11 @@ Here is the repo directory structure:
         └── run_tests.sh
         └── tests
             └── test_1
-            |   ├── input
-            |   │   └── Border_Crossing_Entry_Data.csv
-            |   |__ output
-            |   │   └── report.csv
-            ├── your-own-test_1
                 ├── input
                 │   └── Border_Crossing_Entry_Data.csv
-                |── output
+                |__ output
                     └── report.csv
+
 
 
 # Questions?
