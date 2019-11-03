@@ -1,17 +1,5 @@
 # Border Crossing Analysis
 
-The input data must have at least the columns Border,Date,Measure,and Value provided.
-The columns needs to be separated by comma.
-The first line must be the header line. 
-An example of the input is as follow:
-******************************************************************************************************************
-Port Name,State,Port Code,Border,Date,Measure,Value,Location
-Derby Line,Vermont,209,US-Canada Border,03/01/2019 12:00:00 AM,Truck Containers Full,6483,POINT (-72.09944 45.005)
-Norton,Vermont,211,US-Canada Border,03/01/2019 12:00:00 AM,Trains,19,POINT (-71.79528000000002 45.01)
-...
-******************************************************************************************************************
-
-
 ## Table of Contents
 1. [Introduction](README.md#problem)
 1. [Problem](README.md#problem)
@@ -24,9 +12,12 @@ This is the coding challenge project by Insight Data Engineering.
 
 ## Problem
 ```
-The Bureau of Transportation Statistics regularly makes available data on the number of vehicles, equipment, passengers and pedestrians crossing into the United States by land.
+The Bureau of Transportation Statistics regularly makes available data on the number of vehicles, 
+equipment, passengers and pedestrians crossing into the United States by land.
 
-**For this challenge, we want to you to calculate the total number of times vehicles, equipment, passengers and pedestrians cross the U.S.-Canadian and U.S.-Mexican borders each month. We also want to know the running monthly average of total number of crossings for that type of crossing and border.**
+**For this challenge, we want to you to calculate the total number of times vehicles, equipment, passengers 
+and pedestrians cross the U.S.-Canadian and U.S.-Mexican borders each month. We also want to know the 
+running monthly average of total number of crossings for that type of crossing and border.**
 ```
 
 ## Input Dataset
@@ -47,11 +38,15 @@ Eagle Pass,Texas,2303,US-Mexico Border,01/01/2019 12:00:00 AM,Pedestrians,56810,
 ```
 See the [notes from the Bureau of Transportation Statistics](https://data.transportation.gov/Research-and-Statistics/Border-Crossing-Entry-Data/keg4-3bc2) for more information on each field.
 
-For the purposes of this challenge, we are going to use the following fields:
+The input data must have at least the following fields provided.
 * `Border`: Designates what border was crossed
 * `Date`: Timestamp indicating month and year of crossing
 * `Measure`: Indicates means, or type, of crossing being measured (e.g., vehicle, equipment, passenger or pedestrian)
 * `Value`: Number of crossings
+The columns needs to be separated by comma.
+The first line must be the header line. 
+
+
 
 ## Expected Output
 Using the input file, you must write a program to 
