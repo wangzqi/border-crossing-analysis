@@ -73,8 +73,8 @@ The lines should be sorted in descending order by
 
 The column, `Average`, is for the running monthly average of total crossings for that border and means of crossing in all previous months. In this example, to calculate the `Average` for the first line (i.e., running monthly average of total pedestrians crossing the US-Mexico Border in all of the months preceding March), it takes the average sum of total number of US-Mexico pedestrian crossings in February `156,891 + 15,272 = 172,163` and January `56,810`, and round it to the nearest whole number `round(228,973/2) = 114,487`
 
-`Note: For values like x.5, Python 3 rounds towards the the even integer while Python 2 rounds to the ceil
-here I used round_half_up in order to pass the test even though I am using Python 3 for compiling`
+`Note: For values like x.5, Python 3 rounds towards the the even integer while Python 2 rounds to the ceil.
+Here I used round_half_up in order to pass the test even though I am using Python 3 for compiling`
 
 ## Repo directory structure
 
