@@ -101,3 +101,7 @@ def main():
         for line in output_border_crossing_list:
             f.write(line.Border+","+line.Date.strftime('%m/%d/%Y %I:%M:%S %p')+','+line.Measure+","+str(line.Value)+','+str(line.Average)+'\n')  
         f.close()
+
+       
+    if __name__=='__main__':
+        main()
