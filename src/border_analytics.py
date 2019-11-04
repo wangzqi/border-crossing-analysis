@@ -22,6 +22,7 @@ from decimal import *
 year=0
 output_border_crossing_list = []
 
+#Class definition for output object.
 class output_record(object):
     def __init__(self,input_record_dict):
         self.Border = input_record_dict['Border']
@@ -32,24 +33,24 @@ class output_record(object):
         self.Average = 0
 
 
-#Record Validation Check
+#Function to validate the input record.
 def validate_record(input_record_dict):
     global year
-    try:                                                                                #Check the Date & Value valid or not
+    try:                                                                                
         input_record_dict['Date']=datetime.strptime(input_record_dict['Date'],'%m/%d/%Y %I:%M:%S %p')
         input_record_dict['Value'] = int(input_record_dict['Value'])
         if year==0:
             year=input_record_dict['Date'].year
-        if year!=input_record_dict['Date'].year:                                        #invalidate year
+        if year!=input_record_dict['Date'].year:                                        
             return False
-        if input_record_dict['Value']<0 or input_record_dict['Value']>999999999:        #invalidate values
+        if input_record_dict['Value']<0 or input_record_dict['Value']>999999999:        
             return False
         return True
     except ValueError:
         return False
 
 
-#Add a new record
+#Function to add a new record.
 def add_new_record(input_record_dict,output_border_crossing_list):
     if not output_border_crossing_list:
         output_border_crossing_list.append(output_record(input_record_dict))
@@ -61,42 +62,42 @@ def add_new_record(input_record_dict,output_border_crossing_list):
         output_border_crossing_list.append(output_record(input_record_dict))
 
 
-#Define the sort key for the output
+#Define the sort key for the output.
 def sortKey(line):
-    return line.Date,line.Border,line.Measure
+    return line.Date,line.Value,line.Measure,line.Border
 
 
-# Main part starts here
-with open(sys.argv[1],'r') as Border_Crossing_Entry_Input:                      # Read in all the records
-    for line in Border_Crossing_Entry_Input:
-        input_record=line.strip()
-        input_record=input_record.split(',')
-        if input_record.count('Border')!=0:                                     # If it is a header line
-            header = input_record
-        else:                                                                   # If it is a record
-            try:                                                                # Make sure the header line exist
-                header
-            except NameError:
-                sys.exit('Header line not defined. Please add a header line\n')
+# Main function starts here.
+def main():
+    with open(sys.argv[1],'r') as Border_Crossing_Entry_Input:                      
+        for line in Border_Crossing_Entry_Input:
+            input_record=line.strip()
+            input_record=input_record.split(',')
+            if input_record.count('Border')!=0:                                     
+                header = input_record
+            else:                                                                   
+                try:                                                                
+                    header
+                except NameError:
+                    sys.exit('Header line not defined. Please add a header line\n')
 
-        input_record_dict=dict(zip(header,input_record))
-        if validate_record(input_record_dict):                                  #For valid record, add it to the output
-            add_new_record(input_record_dict,output_border_crossing_list)
+            input_record_dict=dict(zip(header,input_record))
+            if validate_record(input_record_dict):                                  
+                add_new_record(input_record_dict,output_border_crossing_list)
 
+    if len(output_border_crossing_list)==0:
+        print('No valid record found\n')
+    else:
+        output_border_crossing_list.sort(key=sortKey,reverse=True)
+        for line in output_border_crossing_list:                                    
+            for line1 in output_border_crossing_list:
+                if(line.Border==line1.Border and line.Measure==line1.Measure and line.Date>line1.Date and line.Date.month>1):
+                    line.Sum += line1.Value
+                    line.Average = Decimal(line.Sum/(line.Date.month-1)).to_integral(rounding=ROUND_HALF_UP)  #Use round_half_up to match the python 2 results              
+                    #line.Average = round(line.Sum/(line.Date.month-1))
 
-if len(output_border_crossing_list)==0:
-    print('No valid record found\n')
-else:
-    output_border_crossing_list.sort(key=sortKey,reverse=True)
-    for line in output_border_crossing_list:                                    #loop through to calculate the running monthly average
-        for line1 in output_border_crossing_list:
-            if(line.Border==line1.Border and line.Measure==line1.Measure and line.Date>line1.Date and line.Date.month>1):
-                line.Sum += line1.Value
-                line.Average = Decimal(line.Sum/(line.Date.month-1)).to_integral(rounding=ROUND_HALF_UP)  #Use round_half_up to match the python 2 results              
-                #line.Average = round(line.Sum/(line.Date.month-1))
-
-    f=open(sys.argv[2],"w+")                                                    #print the output
-    f.write('Border,Date,Measure,Value,Average\n')
-    for line in output_border_crossing_list:
-        f.write(line.Border+","+line.Date.strftime('%m/%d/%Y %I:%M:%S %p')+','+line.Measure+","+str(line.Value)+','+str(line.Average)+'\n')  
-    f.close()
+        f=open(sys.argv[2],"w+")                                                    
+        f.write('Border,Date,Measure,Value,Average\n')
+        for line in output_border_crossing_list:
+            f.write(line.Border+","+line.Date.strftime('%m/%d/%Y %I:%M:%S %p')+','+line.Measure+","+str(line.Value)+','+str(line.Average)+'\n')  
+        f.close()
